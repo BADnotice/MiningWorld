@@ -3,6 +3,8 @@ version: @version@
 main: etiocook.miningworld.MiningWorld
 authors: [eTioCooK]
 load: STARTUP
+softdepend:
+  - "Multiverse-Core"
 commands:
   mining:
     aliases:

@@ -1,33 +1,60 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+}
+
 plugins {
-    id 'java'
+    id "java"
+    id 'me.bristermitten.pdm' version '0.0.30'
+    id "com.github.johnrengelman.shadow" version "5.0.0"
 }
 
 group = 'etiocook'
 version = '1.0-SNAPSHOT'
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+tasks.build.dependsOn('pdm', 'shadowJar')
 
 repositories {
     mavenCentral()
-    maven {
-        name = 'spigotmc-repo'
-        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-    }
-    maven {
-        name = 'sonatype'
-        url = 'https://oss.sonatype.org/content/groups/public/'
-    }
+    jcenter()
+
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://oss.sonatype.org/content/groups/public/' }
+    maven { url = 'https://jitpack.io/' }
 }
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT'
+
+    implementation 'com.github.HenryFabio.configuration-injector:bukkit:main-SNAPSHOT'
+
+    pdm "com.google.inject:guice:4.0"
+    pdm "javax.inject:javax.inject:1"
+    pdm "aopalliance:aopalliance:1.0"
+    pdm "org.ow2.asm:asm:8.0.1"
+
+    def lombok = 'org.projectlombok:lombok:1.18.16'
+    compileOnly lombok
+    annotationProcessor lombok
 }
 
 processResources {
     from(sourceSets.main.resources.srcDirs) {
         filter ReplaceTokens, tokens: [version: version]
     }
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+shadowJar {
+    archiveName("${project.name}-${project.version}.jar")
+    relocate 'com.github.HenryFabio.configuration-injector', 'etiocook.mining-world.libs.configuration-injector'
 }

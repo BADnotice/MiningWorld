@@ -1,4 +1,11 @@
-name: MiningWorld
+name: mining-world
 version: @version@
 main: etiocook.miningworld.MiningWorld
-authors: [ eTioCooK ]
+authors: [eTioCooK]
+load: STARTUP
+commands:
+  mining:
+    aliases:
+      - mina
+      - mine
+      - minerar

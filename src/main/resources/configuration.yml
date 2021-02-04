@@ -1,0 +1,33 @@
+delay-command: 25 #Tempo para digitar o comando novamente
+delay-effects: 5 #Tempo para setar efeitos
+
+world:
+  name: "mina"
+  seed: 0
+  radius-teleport: 150 #Distancia entre os teleportes
+  effects: #Nome do efeito;Nivel;Tempo em segundos
+    - 'FAST_DIGGING;20;1'
+  materials-blocked: #Lista de items que não irão dropar
+    - "STONE"
+    - "COBBLESTONE"
+    - "DIRT"
+
+messages:
+  in-cooldown: "&cAguarde para digitar este comando novamente!"
+  in-world: "&cVocê já está no mundo de mineração"
+  inventory-full: "&cSeu inventário está lotado."
+  join-world:
+    - '&aSeja bem-vindo ao mundo de Mineração!'
+    - ''
+    - ' &eEsse mundo é resetado toda vez que o servidor reinicia'
+    - ' &eNão construa bases nesse mundo, Não guarde seus itens nesse mundo'
+    - ''
+
+drops:
+  1:
+    percentage: 0.1
+    height:
+      max: 16
+      min: 11
+    material:
+      id: 10

@@ -1,5 +1,5 @@
 # MiningWorld
-um simples sistema de <b>mineração</b> para servidores de factions.
+um simples sistema de <b>mineração</b> para servidores de factions, podendo criar quantos e qualquer item para ser dropado!
 
 ## Comandos
 <table border="1" style="border-collapse: collapse">
@@ -12,7 +12,12 @@ um simples sistema de <b>mineração</b> para servidores de factions.
 </table>
 
 ## Configuração
-```
+```java 
+
+# Olá, para lhe ajudar a configurar o Plugin corretamente, lista de efeitos e materiais abaixo!
+# https://helpch.at/docs/1.8/index.html?org/bukkit/PotionEffectType.html
+# https://helpch.at/docs/1.8/org/bukkit/Material.html
+
 delay-command: 25 -> Intervalo de tempo para digitar novamente o comando
 delay-effects: 5 -> Intervalo de tempo para setar os efeitos
 
@@ -60,5 +65,6 @@ O Projeto foi desenvolvido utilizando as seguintes tecnologias.
 - [Pdm](https://github.com/knightzmc/pdm)
 
 ## Download
+Você pode encontrar o plugin pronto para baixar aqui, ou se você quiser, pode optar por clonar o repositório e dar build no plugin com suas alterações.
 
 Desenvolvido por eTioCooK

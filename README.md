@@ -12,7 +12,7 @@ um simples sistema de <b>mineração</b> para servidores de factions, podendo cr
 </table>
 
 ## Configuração
-```bash
+```yaml
 
 # Olá, para lhe ajudar a configurar o Plugin corretamente, lista de efeitos e materiais abaixo!
 # https://helpch.at/docs/1.8/index.html?org/bukkit/PotionEffectType.html

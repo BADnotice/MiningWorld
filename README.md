@@ -65,6 +65,6 @@ O Projeto foi desenvolvido utilizando as seguintes tecnologias.
 - [Pdm](https://github.com/knightzmc/pdm)
 
 ## Download
-Você pode encontrar o plugin pronto para baixar aqui, ou se você quiser, pode optar por clonar o repositório e dar build no plugin com suas alterações.
+Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADnotice/MiningWorld/releases), ou se você quiser, pode optar por clonar o repositório e dar build no plugin com suas alterações.
 
 Desenvolvido por eTioCooK

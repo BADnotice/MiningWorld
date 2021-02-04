@@ -1,0 +1,4 @@
+name: MiningWorld
+version: @version@
+main: etiocook.miningworld.MiningWorld
+authors: [ eTioCooK ]

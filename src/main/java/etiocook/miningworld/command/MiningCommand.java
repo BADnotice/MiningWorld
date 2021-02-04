@@ -43,6 +43,7 @@ public final class MiningCommand implements CommandExecutor {
         player.teleport(worldManager.generateLocation());
         ConfigurationValue.get(ConfigurationValue::joinWorld).forEach(player::sendMessage);
 
+        cooldown.insertCooldown(player);
         return false;
     }
 

@@ -14,7 +14,7 @@ import java.util.Set;
 @Singleton
 public final class DropManager {
 
-    private final Set<Drop> DROPS = new LinkedHashSet<>();
+    private final Set<Drop> drops = new LinkedHashSet<>();
 
     @Inject private DropParser dropParser;
 
@@ -24,18 +24,14 @@ public final class DropManager {
     }
 
     public void register(Drop drop) {
-        this.DROPS.add(drop);
+        this.drops.add(drop);
     }
 
-    public Drop findDropByHeight(Integer height) {
-        return this.DROPS.stream()
+    public Drop findByHeight(Integer height) {
+        return this.drops.stream()
                 .filter($ -> height >= $.getHeightMin() && height <= $.getHeightMax())
                 .findFirst()
                 .orElse(null);
-    }
-
-    public Set<Drop> getDropsSet() {
-        return ImmutableSet.copyOf(this.DROPS);
     }
 
 }

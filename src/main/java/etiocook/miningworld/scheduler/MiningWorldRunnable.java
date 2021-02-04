@@ -11,7 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 @Singleton
 public final class MiningWorldRunnable extends BukkitRunnable {
 
-    @Inject  private WorldManager worldManager;
+    @Inject private WorldManager worldManager;
 
     @Override
     public void run() {

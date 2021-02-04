@@ -24,17 +24,15 @@ public final class BreakBlockListener implements Listener {
 
     @EventHandler
     public void onBreak(BlockBreakEvent event) {
-
         Player player = event.getPlayer();
         Block block = event.getBlock();
 
-        if (!playerIsValid(player, block)) return;
+        if (!isMiningWorld(player, block)) return;
 
-        Drop drop = dropManager.findDropByHeight(player.getLocation().getBlockY());
+        Drop drop = dropManager.findByHeight(player.getLocation().getBlockY());
         if (drop == null || !PercentageUtils.inPercent(drop.getPercentage())) return;
 
         for (int i = 0; i < getLevelFortune(player.getItemInHand()); i++) sendItemStack(player, drop.getItemStack());
-
     }
 
     private void sendItemStack(Player player, ItemStack itemStack) {
@@ -46,9 +44,8 @@ public final class BreakBlockListener implements Listener {
         player.getInventory().addItem(itemStack);
     }
 
-    private boolean playerIsValid(Player player, Block block) {
-        if (!player.getWorld().getName().equals(worldManager.getName())) return false;
-        return block.getType() == Material.STONE;
+    private boolean isMiningWorld(Player player, Block block) {
+        return player.getWorld().getName().equals(worldManager.getName()) && block.getType() == Material.STONE;
     }
 
     private Integer getLevelFortune(ItemStack itemStack) {

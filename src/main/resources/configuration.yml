@@ -1,13 +1,13 @@
-delay-command: 25 #Tempo para digitar o comando novamente
-delay-effects: 5 #Tempo para setar efeitos
+delay-command: 25
+delay-effects: 5
 
 world:
   name: "mina"
   seed: 0
-  radius-teleport: 150 #Distancia entre os teleportes
-  effects: #Nome do efeito;Nivel;Tempo em segundos
+  radius-teleport: 150
+  effects:
     - 'FAST_DIGGING;20;1'
-  materials-blocked: #Lista de items que não irão dropar
+  materials-blocked:
     - "STONE"
     - "COBBLESTONE"
     - "DIRT"

@@ -14,6 +14,7 @@ import java.util.function.Function;
 @Getter
 @Accessors(fluent = true)
 @ConfigFile("configuration.yml")
+@TranslateColors
 public final class ConfigurationValue implements ConfigurationInjectable {
 
     public static ConfigurationValue instance = new ConfigurationValue();
@@ -24,10 +25,10 @@ public final class ConfigurationValue implements ConfigurationInjectable {
     @ConfigField("delay-command") private Integer delayCommand;
     @ConfigField("delay-effects") private Integer delayEffects;
 
-    @ConfigField("messages.in-cooldown") @TranslateColors private String inCooldown;
-    @ConfigField("messages.in-world") @TranslateColors private String inWorld;
-    @ConfigField("messages.join-world") @TranslateColors private List<String> joinWorld;
-    @ConfigField("messages.inventory-full") @TranslateColors private String inventoryFull;
+    @ConfigField("messages.in-cooldown") private String inCooldown;
+    @ConfigField("messages.in-world") private String inWorld;
+    @ConfigField("messages.join-world") private List<String> joinWorld;
+    @ConfigField("messages.inventory-full")  private String inventoryFull;
 
     public static <T> T get(Function<ConfigurationValue, T> function) {
         return function.apply(instance);

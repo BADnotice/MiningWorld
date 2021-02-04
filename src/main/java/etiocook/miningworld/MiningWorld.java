@@ -31,7 +31,7 @@ public final class MiningWorld extends JavaPlugin {
     public void onEnable() {
         PluginDependencyManager.of(this).loadAllDependencies().thenRun(() -> {
             try {
-                enableInjectConfiguration();
+                initInjectConfiguration();
 
                 this.injector = PluginModule.of(this).createInjector();
                 this.injector.injectMembers(this);
@@ -44,7 +44,7 @@ public final class MiningWorld extends JavaPlugin {
 
                 this.getCommand("mining").setExecutor(this.miningCommand);
 
-                enableRunnable();
+                initRunnable();
             } catch (Throwable t) {
                 t.printStackTrace();
                 Bukkit.getLogger().severe("Um erro ocorreu na inicializado plugin!");
@@ -58,13 +58,13 @@ public final class MiningWorld extends JavaPlugin {
         worldManager.deleteDir(Bukkit.getWorld(worldManager.getName()).getWorldFolder());
     }
 
-    private void enableInjectConfiguration() {
+    private void initInjectConfiguration() {
         BukkitConfigurationInjector customConfiguration = new BukkitConfigurationInjector(this);
         customConfiguration.saveDefaultConfiguration(this, "configuration.yml");
         customConfiguration.injectConfiguration(ConfigurationValue.instance);
     }
 
-    private void enableRunnable() {
+    private void initRunnable() {
         this.miningWorldRunnable.runTaskTimer(this,
                 ConfigurationValue.get(ConfigurationValue::delayEffects),
                 ConfigurationValue.get(ConfigurationValue::delayEffects));

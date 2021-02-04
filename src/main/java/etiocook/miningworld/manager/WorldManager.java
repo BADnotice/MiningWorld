@@ -16,7 +16,6 @@ import java.util.concurrent.ThreadLocalRandom;
 public final class WorldManager {
 
     private String name;
-    private long seed;
     private int radiusTeleport;
 
     private final Set<String> effects = new LinkedHashSet<>();
@@ -25,25 +24,24 @@ public final class WorldManager {
     public void init() {
         ConfigurationSection section = ConfigurationValue.get(ConfigurationValue::world);
         name = section.getString("name");
-        seed = section.getLong("seed");
         radiusTeleport = section.getInt("radius-teleport");
 
         this.effects.addAll(section.getStringList("effects"));
         section.getStringList("materials-blocked").forEach($ -> materials.add(Material.getMaterial($)));
 
-        generateWorld();
+        generateWorld(section.getLong("seed"));
     }
 
-    public void generateWorld() {
+    public void generateWorld(long seed) {
         if (Bukkit.getWorld(name) != null) {
             Bukkit.unloadWorld(name, false);
             deleteDir(Bukkit.getWorld(name).getWorldFolder());
         }
 
-        createWorld();
+        createWorld(seed);
     }
 
-    public void createWorld() {
+    public void createWorld(long seed) {
         WorldCreator worldCreator = WorldCreator.name(name);
         worldCreator.generatorSettings("{\"coordinateScale\":684.412,\"heightScale\":684.412,\"lowerLimitScale\":512.0,\"upperLimitScale\":512.0,\"depthNoiseScaleX\":200.0,\"depthNoiseScaleZ\":200.0,\"depthNoiseScaleExponent\":0.5,\"mainNoiseScaleX\":80.0,\"mainNoiseScaleY\":160.0,\"mainNoiseScaleZ\":80.0,\"baseSize\":8.5,\"stretchY\":12.0,\"biomeDepthWeight\":0.2,\"biomeDepthOffset\":0.0,\"biomeScaleWeight\":1.0,\"biomeScaleOffset\":0.0,\"seaLevel\":63,\"useCaves\":false,\"useDungeons\":false,\"dungeonChance\":8,\"useStrongholds\":false,\"useVillages\":false,\"useMineShafts\":false,\"useTemples\":false,\"useMonuments\":false,\"useRavines\":false,\"useWaterLakes\":false,\"waterLakeChance\":4,\"useLavaLakes\":false,\"lavaLakeChance\":80,\"useLavaOceans\":false,\"fixedBiome\":-1,\"biomeSize\":4,\"riverSize\":4,\"dirtSize\":33,\"dirtCount\":10,\"dirtMinHeight\":0,\"dirtMaxHeight\":256,\"gravelSize\":33,\"gravelCount\":8,\"gravelMinHeight\":0,\"gravelMaxHeight\":256,\"graniteSize\":33,\"graniteCount\":10,\"graniteMinHeight\":0,\"graniteMaxHeight\":80,\"dioriteSize\":33,\"dioriteCount\":10,\"dioriteMinHeight\":0,\"dioriteMaxHeight\":80,\"andesiteSize\":33,\"andesiteCount\":10,\"andesiteMinHeight\":0,\"andesiteMaxHeight\":80,\"coalSize\":1,\"coalCount\":0,\"coalMinHeight\":0,\"coalMaxHeight\":0,\"ironSize\":1,\"ironCount\":0,\"ironMinHeight\":0,\"ironMaxHeight\":0,\"goldSize\":1,\"goldCount\":0,\"goldMinHeight\":0,\"goldMaxHeight\":0,\"redstoneSize\":1,\"redstoneCount\":0,\"redstoneMinHeight\":0,\"redstoneMaxHeight\":0,\"diamondSize\":1,\"diamondCount\":0,\"diamondMinHeight\":0,\"diamondMaxHeight\":0,\"lapisSize\":1,\"lapisCount\":0,\"lapisCenterHeight\":0,\"lapisSpread\":0,\"emeraldSize\":1,\"emeraldCount\":0,\"emeraldCenterHeight\":0,\"emeraldSpread\":0}");
         worldCreator.seed(seed);
@@ -69,6 +67,5 @@ public final class WorldManager {
 
         return new Location(world, x, y, z);
     }
-
 
 }

@@ -29,8 +29,8 @@ public final class BreakBlockListener implements Listener {
 
         if (!isMiningWorld(player, block)) return;
 
-        Drop drop = dropManager.findByHeight(player.getLocation().getBlockY());
-        if (drop == null || !PercentageUtils.inPercent(drop.getPercentage())) return;
+        Drop drop = dropManager.getDropRandom();
+        if (!isMiningHeight(block, drop) || !PercentageUtils.inPercent(drop.getPercentage())) return;
 
         for (int i = 0; i < getLevelFortune(player.getItemInHand()); i++) sendItemStack(player, drop.getItemStack());
     }
@@ -46,6 +46,10 @@ public final class BreakBlockListener implements Listener {
 
     private boolean isMiningWorld(Player player, Block block) {
         return player.getWorld().getName().equals(worldManager.getName()) && block.getType() == Material.STONE;
+    }
+
+    private boolean isMiningHeight(Block block, Drop drop) {
+        return block.getLocation().getY() >= drop.getHeightMin() && block.getLocation().getY() <= drop.getHeightMax();
     }
 
     private Integer getLevelFortune(ItemStack itemStack) {

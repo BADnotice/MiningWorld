@@ -14,13 +14,13 @@ import java.util.concurrent.TimeUnit;
 
 public final class MiningCommand implements CommandExecutor {
 
-    @Inject private WorldManager worldManager;
-
-    private final Cooldown cooldown = Cooldown.of(
+    public final Cooldown cooldown = Cooldown.of(
             ConfigurationValue.get(ConfigurationValue::delayCommand),
             TimeUnit.SECONDS,
             ConfigurationValue.get(ConfigurationValue::inCooldown)
     );
+
+    @Inject private WorldManager worldManager;
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {

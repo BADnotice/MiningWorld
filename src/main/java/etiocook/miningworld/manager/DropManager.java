@@ -1,6 +1,5 @@
 package etiocook.miningworld.manager;
 
-import com.google.common.collect.ImmutableSet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import etiocook.miningworld.configuration.ConfigurationValue;
@@ -8,13 +7,14 @@ import etiocook.miningworld.model.Drop;
 import etiocook.miningworld.parser.DropParser;
 import org.bukkit.configuration.ConfigurationSection;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 @Singleton
 public final class DropManager {
 
-    private final Set<Drop> drops = new LinkedHashSet<>();
+    private final List<Drop> drops = new LinkedList<>();
 
     @Inject private DropParser dropParser;
 
@@ -27,11 +27,8 @@ public final class DropManager {
         this.drops.add(drop);
     }
 
-    public Drop findByHeight(Integer height) {
-        return this.drops.stream()
-                .filter($ -> height >= $.getHeightMin() && height <= $.getHeightMax())
-                .findFirst()
-                .orElse(null);
+    public Drop getDropRandom() {
+        return this.drops.get(new Random().nextInt(this.drops.size()));
     }
 
 }

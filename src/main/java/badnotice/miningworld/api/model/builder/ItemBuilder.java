@@ -1,4 +1,4 @@
-package etiocook.miningworld.builder;
+package badnotice.miningworld.api.model.builder;
 
 import lombok.AccessLevel;
 import lombok.Getter;

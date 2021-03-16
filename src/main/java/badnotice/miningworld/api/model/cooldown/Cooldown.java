@@ -1,4 +1,4 @@
-package etiocook.miningworld.model;
+package badnotice.miningworld.api.model.cooldown;
 
 import lombok.Data;
 import org.bukkit.entity.Player;

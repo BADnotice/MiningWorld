@@ -1,9 +1,9 @@
-package etiocook.miningworld.guice;
+package badnotice.miningworld.guice;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import etiocook.miningworld.MiningWorld;
+import badnotice.miningworld.MiningWorldPlugin;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -11,11 +11,11 @@ import lombok.EqualsAndHashCode;
 @Data(staticConstructor = "of")
 public class PluginModule extends AbstractModule {
 
-    private final MiningWorld miningWorld;
+    private final MiningWorldPlugin miningWorldPlugin;
 
     @Override
     protected void configure() {
-        bind(MiningWorld.class).toInstance(miningWorld);
+        bind(MiningWorldPlugin.class).toInstance(miningWorldPlugin);
     }
 
     public Injector createInjector() {

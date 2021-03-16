@@ -1,10 +1,4 @@
 name: mining-world
 version: @version@
-main: etiocook.miningworld.MiningWorld
-authors: [eTioCooK]
-commands:
-  mining:
-    aliases:
-      - mina
-      - mine
-      - minerar
+main: badnotice.miningworld.MiningWorldPlugin
+authors: [BADnotice]

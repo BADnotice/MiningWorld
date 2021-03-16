@@ -12,8 +12,8 @@ plugins {
     id "com.github.johnrengelman.shadow" version "5.0.0"
 }
 
-group = 'etiocook'
-version = '1.0-SNAPSHOT'
+group = 'badnotice'
+version = '1.0.3-SNAPSHOT'
 
 tasks.build.dependsOn('pdm', 'shadowJar')
 
@@ -21,16 +21,16 @@ repositories {
     mavenCentral()
     jcenter()
 
-    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-    maven { url = 'https://oss.sonatype.org/content/groups/public/' }
+    maven { url = 'http://maven.elmakers.com/repository/'}
     maven { url = 'https://jitpack.io/' }
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot:1.12.2-R0.1-SNAPSHOT'
 
     implementation 'com.github.HenryFabio.configuration-injector:bukkit:main-SNAPSHOT'
 
+    pdm 'com.github.SaiintBrisson:command-framework:1.1.0'
     pdm "com.google.inject:guice:4.0"
     pdm "javax.inject:javax.inject:1"
     pdm "aopalliance:aopalliance:1.0"

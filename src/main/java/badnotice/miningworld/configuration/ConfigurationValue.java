@@ -1,4 +1,4 @@
-package etiocook.miningworld.configuration;
+package badnotice.miningworld.configuration;
 
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigField;
 import com.henryfabio.minecraft.configinjector.common.annotations.ConfigFile;
@@ -23,12 +23,11 @@ public final class ConfigurationValue implements ConfigurationInjectable {
     @ConfigField("world") private ConfigurationSection world;
 
     @ConfigField("delay-command") private Integer delayCommand;
-    @ConfigField("delay-effects") private Integer delayEffects;
 
-    @ConfigField("messages.in-cooldown") private String inCooldown;
-    @ConfigField("messages.in-world") private String inWorld;
-    @ConfigField("messages.join-world") private List<String> joinWorld;
-    @ConfigField("messages.inventory-full")  private String inventoryFull;
+    @ConfigField("messages.in-cooldown") private String messageInCooldown;
+    @ConfigField("messages.in-world") private String messageInWorld;
+    @ConfigField("messages.join-world") private List<String> messageJoinWorld;
+    @ConfigField("messages.inventory-full")  private String messageInventoryFull;
 
     public static <T> T get(Function<ConfigurationValue, T> function) {
         return function.apply(instance);

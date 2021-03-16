@@ -1,4 +1,4 @@
-package etiocook.miningworld.util;
+package badnotice.miningworld.util;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

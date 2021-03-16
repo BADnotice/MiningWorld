@@ -1,12 +1,12 @@
 delay-command: 25
-delay-effects: 5
 
 world:
   name: "mina"
   seed: 0
   radius-teleport: 150
-  effects:
-    - 'FAST_DIGGING;20;1'
+  experience: 1
+  potion-effects:
+    - 'FAST_DIGGING;1'
   materials-blocked:
     - "STONE"
     - "COBBLESTONE"
@@ -31,3 +31,4 @@ drops:
       min: 11
     material:
       id: 10
+      data: 1

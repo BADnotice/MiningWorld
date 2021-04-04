@@ -75,8 +75,10 @@ Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADno
 
 ## Events
 - <b>MiningDropSpawnEvent</b> - Chamado quando o jogador recebe o drop.
+- <b>MiningJoinWorldEvent</b> - Chamado quando o jogador entra no mundo de mineração.
+- <b>MiningLeaveWorldEvent</b> - Chamado quando o jogador deixa o mundo de mineração.
 ```java
-  @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+  @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onMiningDrop(MiningDropSpawnEvent event) {
         Player player = event.getPlayer();
         Drop drop = event.getDrop();
@@ -87,7 +89,33 @@ Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADno
                 "§ePercent: §l" + drop.getPercentage(),
                 "§eXP: §l" + event.getExperience(),
                 "§eAmount: §l" + event.getAmount(),
-                "",
+                ""
         });
+    }
+
+  @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    public void onMiningDrop(MiningJoinWorldEvent event) {
+        Player player = event.getPlayer();
+        WorldController controller = event.getController();
+
+        player.sendMessage(new String[]{
+                "",
+                "§eVocê entrou no mundo de mineração",
+                "§ee recebeu §7'" + event.getController().getEffects().size() + "' §eefeitos."
+                ""
+        });
+
+        player.sendMessage("Lista de materias que não droparam aqui.");
+        player.sendMessage("");
+        for (Material material : controller.getMaterials()) {
+            player.sendMessage("§e" + material.name());
+        }
+        player.sendMessage("");
+    }
+
+ @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    public void onMiningDrop(MiningLeaveWorldEvent event) {
+        Player player = event.getPlayer();
+        player.sendMessage("§eTodos efeitos do mundo de mineração foram rmeovidos.");
     }
 ```

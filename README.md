@@ -7,10 +7,10 @@ Um simples sistema de <b>mineração</b> para servidores de factions.
 <th>Comando</th> <th>Descrição</th> <th>Permissão</th>
 </tr>
 <tr>
-<td>/mina</td> <td>ir até o mundo de mineração</td> <td>`nenhuma`</td>
+<td>/mina</td> <td>ir até o mundo de mineração</td> <td>nenhuma</td>
 </tr>
 <tr>
-<td>/mina criarmundo</td> <td>gerar o mundo de mineração</td> <td>`miningworld.admin`</td>
+<td>/mina criarmundo</td> <td>gerar o mundo de mineração</td> <td>miningworld.admin</td>
 </tr>
 </table>
 

@@ -1,7 +1,10 @@
 package badnotice.miningworld.listener;
 
-import badnotice.miningworld.api.event.MiningDropSpawnEvent;
+import badnotice.miningworld.api.event.impl.MiningDropSpawnEvent;
+import badnotice.miningworld.api.event.impl.MiningJoinWorldEvent;
+import badnotice.miningworld.api.event.impl.MiningLeaveWorldEvent;
 import badnotice.miningworld.api.model.Drop;
+import badnotice.miningworld.configuration.ConfigurationValue;
 import badnotice.miningworld.controller.DropController;
 import badnotice.miningworld.controller.WorldController;
 import badnotice.miningworld.util.PercentageUtils;
@@ -18,54 +21,46 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
+import org.bukkit.inventory.ItemStack;
 
 public final class MiningWorldListener implements Listener {
 
-    @Inject private DropController dropController;
     @Inject private WorldController worldController;
 
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void onBreak(BlockBreakEvent event) {
-        Player player = event.getPlayer();
-        Block block = event.getBlock();
-
-        if (!player.getWorld().getName().equals(worldController.getName()) || block.getType() != Material.STONE) return;
-        Drop drop = dropController.getDropRandom();
-
-        if (!MiningWorldUtils.isMiningHeight(block, drop) || !PercentageUtils.inPercent(drop.getPercentage())) return;
-
-        MiningDropSpawnEvent miningDropSpawnEvent = new MiningDropSpawnEvent(
-                player,
-                drop,
-                worldController.getExperience(),
-                MiningWorldUtils.getRandomFortune(player.getItemInHand())
-        );
-        Bukkit.getPluginManager().callEvent(miningDropSpawnEvent);
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    public void onMiningJoinWorld(MiningJoinWorldEvent event) {
+        WorldController controller = event.getController();
+        controller.getEffects().forEach(event.getPlayer()::addPotionEffect);
     }
 
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void onItemSpawn(ItemSpawnEvent event) {
-        if (!event.getEntity().getWorld().getName().equals(worldController.getName())) return;
-
-        Material block = event.getEntity().getItemStack().getType();
-        if (worldController.getMaterials().contains(block)) event.getEntity().remove();
-    }
-
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void onPlayerChanged(PlayerChangedWorldEvent event) {
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    public void onMiningLeaveWorld(MiningLeaveWorldEvent event) {
+        WorldController controller = event.getController();
         Player player = event.getPlayer();
-        World world = player.getWorld();
 
-        if (world.getName().equalsIgnoreCase(worldController.getName())) {
-            worldController.getEffects().forEach(player::addPotionEffect);
-            return;
-        }
-
-        if (!event.getFrom().getName().equals(worldController.getName())) return;
-
-        player.getActivePotionEffects().forEach($ -> worldController.getEffects().forEach(potionEffect -> {
+        player.getActivePotionEffects().forEach($ -> controller.getEffects().forEach(potionEffect -> {
             if ($.getType().equals(potionEffect.getType())) player.removePotionEffect($.getType());
         }));
+    }
+
+    @EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
+    public void onMiningWorld(MiningDropSpawnEvent event) {
+        Drop drop = event.getDrop();
+
+        Player player = event.getPlayer();
+        player.giveExp(event.getExperience());
+
+        for (int i = 0; i < event.getAmount(); i++) sendItem(player, drop.getItemStack());
+    }
+
+    private void sendItem(Player player, ItemStack itemStack) {
+        if (player.getInventory().firstEmpty() == -1) {
+            player.sendMessage(ConfigurationValue.get(ConfigurationValue::messageInventoryFull));
+            player.getWorld().dropItem(player.getLocation(), itemStack);
+
+        } else {
+            player.getInventory().addItem(itemStack);
+        }
     }
 
 }

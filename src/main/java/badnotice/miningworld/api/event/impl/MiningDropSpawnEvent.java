@@ -1,5 +1,6 @@
-package badnotice.miningworld.api.event;
+package badnotice.miningworld.api.event.impl;
 
+import badnotice.miningworld.api.event.CustomEvent;
 import badnotice.miningworld.api.model.Drop;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

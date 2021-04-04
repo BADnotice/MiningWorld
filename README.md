@@ -116,6 +116,6 @@ Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADno
  @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onMiningDrop(MiningLeaveWorldEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("§eTodos efeitos do mundo de mineração foram rmeovidos.");
+        player.sendMessage("§eTodos efeitos do mundo de mineração foram removidos.");
     }
 ```

@@ -4,13 +4,13 @@ import badnotice.miningworld.commands.MineCommand;
 import badnotice.miningworld.controller.DropController;
 import badnotice.miningworld.controller.WorldController;
 import badnotice.miningworld.guice.PluginModule;
+import badnotice.miningworld.listener.BukkitListener;
 import badnotice.miningworld.listener.MiningWorldListener;
 import badnotice.miningworld.util.FileUtils;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.henryfabio.minecraft.configinjector.bukkit.injector.BukkitConfigurationInjector;
 import badnotice.miningworld.configuration.ConfigurationValue;
-import badnotice.miningworld.listener.custom.MiningDropSpawnListener;
 import lombok.Getter;
 import me.bristermitten.pdm.PluginDependencyManager;
 import me.saiintbrisson.bukkit.command.BukkitFrame;
@@ -60,7 +60,7 @@ public final class MiningWorldPlugin extends JavaPlugin {
 
     private void initListener() {
         Bukkit.getPluginManager().registerEvents(injector.getInstance(MiningWorldListener.class), this);
-        Bukkit.getPluginManager().registerEvents(injector.getInstance(MiningDropSpawnListener.class), this);
+        Bukkit.getPluginManager().registerEvents(injector.getInstance(BukkitListener.class), this);
     }
 
     private void initBukkitFrame() {

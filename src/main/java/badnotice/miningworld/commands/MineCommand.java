@@ -1,5 +1,6 @@
 package badnotice.miningworld.commands;
 
+import badnotice.miningworld.api.event.impl.MiningJoinWorldEvent;
 import badnotice.miningworld.controller.WorldController;
 import badnotice.miningworld.util.MiningWorldUtils;
 import com.google.inject.Inject;
@@ -49,6 +50,9 @@ public final class MineCommand {
                 this.worldController.getName(),
                 this.worldController.getRadiusTeleport()
         ));
+
+        MiningJoinWorldEvent miningJoinWorldEvent = new MiningJoinWorldEvent(player, worldController);
+        Bukkit.getPluginManager().callEvent(miningJoinWorldEvent);
     }
 
     @Command(

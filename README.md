@@ -79,7 +79,7 @@ Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADno
 - <b>MiningLeaveWorldEvent</b> - Chamado quando o jogador deixa o mundo de mineração.
 ```java
   @EventHandler
-    public void onMiningDrop(MiningDropSpawnEvent event) {
+    public void onMiningDropSpawn(MiningDropSpawnEvent event) {
         Player player = event.getPlayer();
         Drop drop = event.getDrop();
 
@@ -95,7 +95,7 @@ Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADno
 ```
 ```java
   @EventHandler
-    public void onMiningDrop(MiningJoinWorldEvent event) {
+    public void onMiningJoinWorld(MiningJoinWorldEvent event) {
         Player player = event.getPlayer();
         WorldController controller = event.getController();
 
@@ -116,7 +116,7 @@ Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADno
 ```
 ```java
  @EventHandler
-    public void onMiningDrop(MiningLeaveWorldEvent event) {
+    public void onMiningLeaveWorld(MiningLeaveWorldEvent event) {
         Player player = event.getPlayer();
         player.sendMessage("§eTodos efeitos do mundo de mineração foram removidos.");
     }

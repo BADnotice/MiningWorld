@@ -54,7 +54,7 @@ public final class MiningWorldPlugin extends JavaPlugin {
 
     private void initBukkitFrame() {
         BukkitFrame bukkitFrame = new BukkitFrame(this);
-        bukkitFrame.registerCommands(MineCommand.class);
+        bukkitFrame.registerCommands(new MineCommand());
     }
 
 }

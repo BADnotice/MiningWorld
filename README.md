@@ -7,10 +7,10 @@ Um simples sistema de <b>mineração</b> para servidores de factions.
 <th>Comando</th> <th>Descrição</th> <th>Permissão</th>
 </tr>
 <tr>
-<td>/mina</td> <td>ir até o mundo de mineração</td> <td>nenhuma</td>
+<td>/mina</td> <td>Responsavel por ir até o mundo de mineração</td> <td>nenhuma</td>
 </tr>
 <tr>
-<td>/mina criarmundo</td> <td>gerar o mundo de mineração</td> <td>miningworld.admin</td>
+<td>/mina criarmundo</td> <td>Responsavel por gerar o mundo de mineração</td> <td>miningworld.admin</td>
 </tr>
 </table>
 
@@ -78,8 +78,8 @@ Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADno
 - <b>MiningJoinWorldEvent</b> - Chamado quando o jogador entra no mundo de mineração.
 - <b>MiningLeaveWorldEvent</b> - Chamado quando o jogador deixa o mundo de mineração.
 ```java
-  @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void onMiningDrop(MiningDropSpawnEvent event) {
+  @EventHandler
+    public void onMiningDropSpawn(MiningDropSpawnEvent event) {
         Player player = event.getPlayer();
         Drop drop = event.getDrop();
 
@@ -92,9 +92,10 @@ Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADno
                 ""
         });
     }
-
-  @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void onMiningDrop(MiningJoinWorldEvent event) {
+```
+```java
+  @EventHandler
+    public void onMiningJoinWorld(MiningJoinWorldEvent event) {
         Player player = event.getPlayer();
         WorldController controller = event.getController();
 
@@ -112,10 +113,11 @@ Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADno
         }
         player.sendMessage("");
     }
-
- @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-    public void onMiningDrop(MiningLeaveWorldEvent event) {
+```
+```java
+ @EventHandler
+    public void onMiningLeaveWorld(MiningLeaveWorldEvent event) {
         Player player = event.getPlayer();
-        player.sendMessage("§eTodos efeitos do mundo de mineração foram rmeovidos.");
+        player.sendMessage("§eTodos efeitos do mundo de mineração foram removidos.");
     }
 ```

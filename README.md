@@ -1,5 +1,5 @@
 # MiningWorld
-Um simples sistema de <b>mineração</b> para servidores de factions.
+MiningWorld é um plugin de mineração <b>simples</b> e de <b>fácil</b> configuração para servidores de factions.
 
 ## Comandos
 <table border="1" style="border-collapse: collapse">
@@ -16,7 +16,6 @@ Um simples sistema de <b>mineração</b> para servidores de factions.
 
 ## Configuração
 ```yaml
-
 # Olá, para lhe ajudar a configurar o Plugin corretamente, lista de efeitos e materiais abaixo!
 # https://helpch.at/docs/1.8/index.html?org/bukkit/PotionEffectType.html
 # https://helpch.at/docs/1.8/org/bukkit/Material.html
@@ -66,9 +65,9 @@ drops:
 ## Tecnologias utilizadas
 O Projeto foi desenvolvido utilizando as seguintes tecnologias.
 
-- [Google Guice](https://github.com/google/guice) - fornece suporte para injeção de dependência usando anotações.
+- [configuration-inject](https://github.com/HenryFabio/configuration-injector) - injetar valores de configurações automaticamente.
 - [command-framework]() - framework para criação e gerenciamento de comandos.
-- [Pdm](https://github.com/knightzmc/pdm) - Faz o download de dependências de desenvolvimento durante o carregamento do servidor.
+- [pdm](https://github.com/knightzmc/pdm) - Faz o download de dependências de desenvolvimento durante o carregamento do servidor.
 
 ## Download
 Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADnotice/MiningWorld/releases), ou se você quiser, pode optar por clonar o repositório e dar build no plugin com suas alterações.

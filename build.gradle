@@ -12,7 +12,7 @@ plugins {
     id "com.github.johnrengelman.shadow" version "5.0.0"
 }
 
-group = 'badnotice'
+group = 'com.github.badnotice'
 version = '1.0.3-SNAPSHOT'
 
 tasks.build.dependsOn('pdm', 'shadowJar')
@@ -56,5 +56,5 @@ compileJava {
 
 shadowJar {
     archiveName("${project.name}-${project.version}.jar")
-    relocate 'com.github.HenryFabio.configuration-injector', 'etiocook.mining-world.libs.configuration-injector'
+    relocate 'com.github.HenryFabio.configuration-injector', 'com.github.badnotice.miningworld.libs.configuration-injector'
 }

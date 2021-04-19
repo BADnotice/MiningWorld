@@ -1,4 +1,4 @@
 name: mining-world
 version: @version@
-main: badnotice.miningworld.MiningWorldPlugin
+main: com.github.badnotice.miningworld.MiningWorldPlugin
 authors: [BADnotice]

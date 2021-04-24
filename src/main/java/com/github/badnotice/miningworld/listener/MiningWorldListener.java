@@ -1,13 +1,11 @@
 package com.github.badnotice.miningworld.listener;
 
-import com.github.badnotice.miningworld.MiningWorldPlugin;
+import com.github.badnotice.miningworld.configuration.ConfigValue;
 import com.github.badnotice.miningworld.event.impl.MiningDropSpawnEvent;
 import com.github.badnotice.miningworld.event.impl.MiningJoinWorldEvent;
 import com.github.badnotice.miningworld.event.impl.MiningLeaveWorldEvent;
 import com.github.badnotice.miningworld.model.Drop;
-import com.github.badnotice.miningworld.configuration.ConfigValue;
 import com.github.badnotice.miningworld.registry.WorldRegistry;
-import com.google.inject.Inject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

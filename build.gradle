@@ -13,7 +13,7 @@ plugins {
 }
 
 group = 'com.github.badnotice'
-version = '1.0.3-SNAPSHOT'
+version = '1.0.4-SNAPSHOT'
 
 tasks.build.dependsOn('pdm', 'shadowJar')
 

@@ -1,12 +1,11 @@
 package com.github.badnotice.miningworld.commands;
 
 import com.github.badnotice.miningworld.MiningWorldPlugin;
+import com.github.badnotice.miningworld.configuration.ConfigValue;
 import com.github.badnotice.miningworld.event.impl.MiningJoinWorldEvent;
+import com.github.badnotice.miningworld.model.cooldown.Cooldown;
 import com.github.badnotice.miningworld.registry.WorldRegistry;
 import com.github.badnotice.miningworld.util.LocationUtils;
-import com.github.badnotice.miningworld.configuration.ConfigValue;
-import com.google.inject.Inject;
-import com.github.badnotice.miningworld.model.cooldown.Cooldown;
 import me.saiintbrisson.minecraft.command.annotation.Command;
 import me.saiintbrisson.minecraft.command.command.Context;
 import org.bukkit.Bukkit;

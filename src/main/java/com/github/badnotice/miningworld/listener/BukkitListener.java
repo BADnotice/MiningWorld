@@ -8,7 +8,6 @@ import com.github.badnotice.miningworld.registry.DropRegistry;
 import com.github.badnotice.miningworld.registry.WorldRegistry;
 import com.github.badnotice.miningworld.util.MiningWorldUtils;
 import com.github.badnotice.miningworld.util.PercentageUtils;
-import com.google.inject.Inject;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

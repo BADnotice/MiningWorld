@@ -1,8 +1,6 @@
 package com.github.badnotice.miningworld.registry;
 
 import com.github.badnotice.miningworld.configuration.ConfigValue;
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.github.badnotice.miningworld.model.Drop;
 import com.github.badnotice.miningworld.parsers.Parsers;
 import org.bukkit.configuration.ConfigurationSection;

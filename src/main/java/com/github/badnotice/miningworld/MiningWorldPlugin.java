@@ -1,12 +1,12 @@
 package com.github.badnotice.miningworld;
 
 import com.github.badnotice.miningworld.commands.MineCommand;
-import com.github.badnotice.miningworld.registry.DropRegistry;
-import com.github.badnotice.miningworld.registry.WorldRegistry;
+import com.github.badnotice.miningworld.configuration.ConfigValue;
 import com.github.badnotice.miningworld.listener.BukkitListener;
 import com.github.badnotice.miningworld.listener.MiningWorldListener;
+import com.github.badnotice.miningworld.registry.DropRegistry;
+import com.github.badnotice.miningworld.registry.WorldRegistry;
 import com.github.badnotice.miningworld.util.FileUtils;
-import com.github.badnotice.miningworld.configuration.ConfigValue;
 import com.henryfabio.minecraft.configinjector.bukkit.injector.BukkitConfigurationInjector;
 import lombok.Getter;
 import me.bristermitten.pdm.PluginDependencyManager;
@@ -28,7 +28,9 @@ public final class MiningWorldPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         initInjectConfiguration();
-        Bukkit.getScheduler().runTask(this, this.worldRegistry::init);
+
+        this.dropRegistry.init();
+        this.worldRegistry.init();
 
         initListener();
         PluginDependencyManager.of(this).loadAllDependencies().thenRun(this::initBukkitFrame);

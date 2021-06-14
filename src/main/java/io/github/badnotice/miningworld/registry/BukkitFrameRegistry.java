@@ -13,7 +13,7 @@ public final class BukkitFrameRegistry {
     public void init() {
         BukkitFrame bukkitFrame = new BukkitFrame(this.plugin);
         bukkitFrame.registerCommands(
-                new MineCommand()
+                new MineCommand(this.plugin)
         );
     }
 

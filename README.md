@@ -1,7 +1,12 @@
-# MiningWorld
-MiningWorld é um plugin de mineração <b>simples</b> e de <b>fácil</b> configuração para servidores de factions.
+# mining-world
+mining-world é um plugin de mineração simples e de fácil configuração para servidores de factions.
 
-## Comandos
+## :pushpin: Features
+  - Configuração flexível.
+  - Codigo limpo e leve.
+  - Permitido criar quantas recompensas quiser.
+
+## :heavy_minus_sign: Comandos
 <table border="1" style="border-collapse: collapse">
 <tr>
 <th>Comando</th> <th>Descrição</th> <th>Permissão</th>
@@ -10,113 +15,30 @@ MiningWorld é um plugin de mineração <b>simples</b> e de <b>fácil</b> config
 <td>/mina</td> <td>Responsavel por ir até o mundo de mineração</td> <td>nenhuma</td>
 </tr>
 <tr>
-<td>/mina criarmundo</td> <td>Responsavel por gerar o mundo de mineração</td> <td>miningworld.admin</td>
+<td>/mina criarmundo</td> <td>Responsavel por gerar o mundo de mineração</td> <td>miningworld.command.createworld</td>
 </tr>
 </table>
 
-## Configuração
-```yaml
-# Olá, para lhe ajudar a configurar o Plugin corretamente, lista de efeitos e materiais abaixo!
-# https://helpch.at/docs/1.8/index.html?org/bukkit/PotionEffectType.html
-# https://helpch.at/docs/1.8/org/bukkit/Material.html
+## :link: Links
+  - [config.yml](https://github.com/BADnotice/MiningWorld/blob/master/src/main/resources/config.yml) - clique para acessar o arquivo de configuração.
+  - [rewards.yml](https://github.com/BADnotice/MiningWorld/blob/master/src/main/resources/rewards.yml) - clique para acessar o arquivo de recompensas.
 
-delay-command: 25 #Intervalo de tempo para digitar novamente o comando
-
-world:
-  name: "mina" #Nome do mundo que vai ser criado
-  seed: 0 #Defina a seed do mundo ou deixe 0 para gerar aleatoriamente
-  radius-teleport: 150 #Teleporta para uma coordenada aleatoria entre 0 e 150
-  experience: 1 #Quantidade de experiencia que será dado ao jogador
-  effects:
-    - 'FAST_DIGGING;1' #Defina o efeito da seguinte forma [Nome do efeito;nivel]
-  materials-blocked: 
-    - "STONE" #Defina o material que não irá ser dropando no mundo de mineração
-
-messages:
-  in-cooldown: "&cAguarde para digitar este comando novamente!"
-  in-world: "&cVocê já está no mundo de mineração"
-  inventory-full: "&cSeu inventário está lotado."
-  join-world:
-    - '&aSeja bem-vindo ao mundo de Mineração!'
-    - ''
-    - ' &eEsse mundo é resetado toda vez que o servidor reinicia'
-    - ' &eNão construa bases nesse mundo, Não guarde seus itens nesse mundo'
-    - ''
-
-drops:
-  1:
-    percentage: 20.1 #Porcentagem do item que irá ser dropado
-    height:
-      max: 5 #Altura máxima aonde ele dropará
-      min: 1 #Altura minima aonde ele dropará
-    material:
-      id: 266 #Id do material que será dropado
-      data: 0 #Data do material que será dropado
-  2:
-    percentage: 40.1
-    height:
-      max: 16
-      min: 11
-    material:
-      id: 266
-      data: 0
-```
-
-## Tecnologias utilizadas
+## :tada: Tecnologias utilizadas
 O Projeto foi desenvolvido utilizando as seguintes tecnologias.
 
-- [configuration-inject](https://github.com/HenryFabio/configuration-injector) - injetar valores de configurações automaticamente.
-- [command-framework]() - framework para criação e gerenciamento de comandos.
-- [pdm](https://github.com/knightzmc/pdm) - Faz o download de dependências de desenvolvimento durante o carregamento do servidor.
+- [lombok](https://projectlombok.org/) - Gera getters, setters e outros métodos útils durante a compilação por meio de anotações.
+- [pdm](https://github.com/knightzmc/pdm) - baixa as dependências de desenvolvimento assim que o plugin é ligado pela primeira vez.
 
-## Download
-Você pode encontrar o plugin pronto para baixar [aqui](https://github.com/BADnotice/MiningWorld/releases), ou se você quiser, pode optar por clonar o repositório e dar build no plugin com suas alterações.
+### :tada: APIs e Frameworks
 
-## Events
-- <b>MiningDropSpawnEvent</b> - Chamado quando o jogador recebe o drop.
-- <b>MiningJoinWorldEvent</b> - Chamado quando o jogador entra no mundo de mineração.
-- <b>MiningLeaveWorldEvent</b> - Chamado quando o jogador deixa o mundo de mineração.
-```java
-  @EventHandler
-    public void onMiningDropSpawn(MiningDropSpawnEvent event) {
-        Player player = event.getPlayer();
-        Drop drop = event.getDrop();
+ - [command-framework](https://github.com/SaiintBrisson/command-framework) - framework para criação e gerenciamento de comandos.
+ - [configuration-inject](https://github.com/HenryFabio/configuration-injector) - injetar valores de configurações automaticamente.
+ 
+## :inbox_tray: Download
+Você pode baixar o plugin clicando [AQUI](https://github.com/BADnotice/MiningWorld/releases) ou se preferir alterar, pode clonar o repositório.
 
-        player.sendMessage(new String[]{
-                "",
-                "§eItem: §l" + drop.getItemStack().getType().name(),
-                "§ePercent: §l" + drop.getPercentage(),
-                "§eXP: §l" + event.getExperience(),
-                "§eAmount: §l" + event.getAmount(),
-                ""
-        });
-    }
-```
-```java
-  @EventHandler
-    public void onMiningJoinWorld(MiningJoinWorldEvent event) {
-        Player player = event.getPlayer();
-        WorldController controller = event.getController();
+#### :fire: Events
 
-        player.sendMessage(new String[]{
-                "",
-                "§eVocê entrou no mundo de mineração",
-                "§ee recebeu §7'" + event.getController().getEffects().size() + "' §eefeitos."
-                ""
-        });
-
-        player.sendMessage("Lista de materias que não droparam aqui.");
-        player.sendMessage("");
-        for (Material material : controller.getMaterials()) {
-            player.sendMessage("§e" + material.name());
-        }
-        player.sendMessage("");
-    }
-```
-```java
- @EventHandler
-    public void onMiningLeaveWorld(MiningLeaveWorldEvent event) {
-        Player player = event.getPlayer();
-        player.sendMessage("§eTodos efeitos do mundo de mineração foram removidos.");
-    }
-```
+- <b>MiningRewardSpawnEvent</b> - Chamado quando o jogador recebe uma reward. 
+- <b>MiningJoinWorldEvent</b> - Chamado quando o jogador entra no mundo de mineração. 
+- <b>MiningLeaveWorldEvent</b> - Chamado quando o jogador deixa o mundo de mineração. 

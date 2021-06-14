@@ -1,34 +1,51 @@
+# Olá, para lhe ajudar a configurar o Plugin corretamente, lista de efeitos e materiais abaixo!
+# https://helpch.at/docs/1.8/index.html?org/bukkit/PotionEffectType.html
+# https://helpch.at/docs/1.8/org/bukkit/Material.html
+
+# Delay para digitar '/mina' novamente, tempo em segundos
 delay-command: 25
 
 world:
+
+  # Nome do mundo de mineração
   name: "mina"
+
+  # Seed do mundo de mineração
   seed: 0
+
+  # Distancia que o jogador será teleportado ao entrar no mundo de mineração
   radius-teleport: 150
+
+  # Quantidade de experience que será entregue ao jogador
   experience: 1
+
+  # Lista de efeitos que será aplicado ao entrar no mundo de mineração
   potion-effects:
     - 'FAST_DIGGING;1'
+
+  # Lista de itens que será removido ao ser dropado no mundo de mineração
   materials-blocked:
     - "STONE"
     - "COBBLESTONE"
     - "DIRT"
 
 messages:
-  in-cooldown: "&cAguarde para digitar este comando novamente!"
+  #Mensagem em resposta ao comando /mina e está em cooldown
+  #
+  # opções:
+  # {0} - tempo0} restant para sair do cooldown
+  in-cooldown: "&cAguarde {0} para digitar este comando novamente!"
+
+  # Mensagem em resposta ao jogador digitar /mina e já estar no mundo de mineração
   in-world: "&cVocê já está no mundo de mineração"
-  inventory-full: "&cSeu inventário está lotado."
+
+  # Mensagem em resposta do inventario está cheio ao receber um drop
+  inventory-full: "&cSeu inventário está lotado, os itens foram dropados."
+
+  # Mensagem em resposta ao entrar no mundo de mineração
   join-world:
     - '&aSeja bem-vindo ao mundo de Mineração!'
     - ''
     - ' &eEsse mundo é resetado toda vez que o servidor reinicia'
     - ' &eNão construa bases nesse mundo, Não guarde seus itens nesse mundo'
     - ''
-
-drops:
-  1:
-    percentage: 0.1
-    height:
-      max: 16
-      min: 11
-    material:
-      id: 10
-      data: 1

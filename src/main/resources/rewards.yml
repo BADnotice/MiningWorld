@@ -1,0 +1,12 @@
+# Olá, para lhe ajudar a configurar o Plugin corretamente, lista de materiais abaixo!
+# https://helpch.at/docs/1.8/org/bukkit/Material.html
+
+rewards:
+  1:
+    percentage: 30.0
+    height:
+      max: 16
+      min: 1
+    material:
+      id: 264
+      data: 0

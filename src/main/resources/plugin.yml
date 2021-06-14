@@ -1,4 +1,4 @@
 name: mining-world
-version: 1.0.4-SNAPSHOT
-main: com.github.badnotice.miningworld.MiningWorldPlugin
-authors: [BADnotice]
+version: 1.0.5-SNAPSHOT
+main: io.github.badnotice.miningworld.MiningWorldPlugin
+authors: [ BADnotice ]
